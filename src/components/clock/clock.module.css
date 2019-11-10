@@ -1,0 +1,42 @@
+.ClockFace{
+    border: solid black;
+    border-radius: 50%;
+    padding-top: 100%;
+    position: relative;
+}
+
+.MinuteHandContainer, .HourHandContainer{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.HourHand {
+    background: #000;
+    height: 44%;
+    left: 48.75%;
+    position: absolute;
+    border-radius: 0px 0px 50px 50px;
+    top: 7%;
+    transform-origin: 50% 100%;
+    width: 2.5%;
+}
+
+.MinuteHand {
+    background: #000;
+    height: 47%;
+    left: 48.75%;
+    position: absolute;
+    border-radius: 0px 0px 50px 50px;
+    top: 4%;
+    transform-origin: 50% 100%;
+    width: 2.5%;
+}
+
+@keyframes rotate {
+    100% {
+      transform: rotateZ(360deg);
+    }
+  }
