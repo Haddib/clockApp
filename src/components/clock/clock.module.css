@@ -37,6 +37,26 @@
 
 @keyframes rotate {
     100% {
-      transform: rotateZ(360deg);
+        transform: rotateZ(360deg);
     }
-  }
+}
+
+.NormalHourHandContainer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /*animation: rotate 43200s infinite linear;*/
+    transition: transform 1s ease-in-out;
+}
+
+ .NormalMinuteHandContainer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /*animation: rotate 3600s infinite linear;*/
+    transition: transform 1s ease-in-out;
+}

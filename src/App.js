@@ -4,7 +4,7 @@ import './App.css';
 
 function App() {
 
-  const [hours, setHours] =  useState(new Date().getHours());
+  /*const [hours, setHours] =  useState(new Date().getHours());
   const [minutes, setMinutes] = useState(new Date().getMinutes());
 
   useEffect(() =>{
@@ -14,14 +14,11 @@ function App() {
       },
           60000
       );
-  });
+  });*/
 
   return (
     <div className="App">
-      <Clock 
-        hour={hours}
-        minutes={minutes}
-      />
+      <Clock />
     </div>
   );
 }
