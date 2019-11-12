@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import Clock from './components/clock/clock';
+import VerticalClockBar from './containers/verticalClockBar/verticalClockBar';
 import './App.css';
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
 
   return (
     <div className="App">
-      <Clock />
+      <VerticalClockBar />
     </div>
   );
 }
