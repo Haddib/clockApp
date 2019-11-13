@@ -1,0 +1,10 @@
+.TwoClockRow{
+    display: flex;
+    width: fit-content;
+    height: 76px;
+    padding-top: 4px;
+}
+
+.ColonContainer{
+    display: block;
+}

@@ -17,7 +17,7 @@
 .HourHand {
     background: #000;
     height: 44%;
-    left: 48.75%;
+    left: 48%;
     position: absolute;
     border-radius: 0px 0px 50px 50px;
     top: 7%;
@@ -28,7 +28,7 @@
 .MinuteHand {
     background: #000;
     height: 47%;
-    left: 48.75%;
+    left: 48%;
     position: absolute;
     border-radius: 0px 0px 50px 50px;
     top: 4%;
@@ -48,8 +48,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    /*animation: rotate 43200s infinite linear;*/
-    transition: transform 1s ease-in-out;
+    transition: transform 3s ease-in-out;
 }
 
  .NormalMinuteHandContainer {
@@ -58,6 +57,5 @@
     right: 0;
     bottom: 0;
     left: 0;
-    /*animation: rotate 3600s infinite linear;*/
-    transition: transform 1s ease-in-out;
+    transition: transform 3s ease-in-out;
 }

@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { Component } from 'react';
 import * as styles from './clock.module.css';
+import * as actions from './../../store/actionTypes';
 
 class Clock extends Component {
 
@@ -23,9 +24,10 @@ class Clock extends Component {
 
     componentDidMount() {
         setInterval(() => {
-            if(!this.props.minutes && !this.props.hours){
+            let tempState = {...this.state};
+
+            if(!this.props.position){
                 const date = new Date();
-                let tempState = {...this.state};
                 if(tempState.hours !== date.getHours()%12){
                    tempState.hours = date.getHours()%12;
                    tempState.hoursDeg += 30;
@@ -37,7 +39,65 @@ class Clock extends Component {
                 this.setState({...tempState});
             }
             else{
-                //TODO custom position
+                switch (this.props.position) {
+                    case actions.HORIZONTAL_LINE:
+                        this.setState({
+                            ...tempState,
+                            hoursDeg: 270,
+                            minutesDeg: 90
+                        });
+                        break;
+
+                    case actions.VERTICAL_LINE:
+                        this.setState({
+                            ...tempState,
+                            hoursDeg: 180,
+                            minutesDeg: 0
+                        });
+                        break;
+                
+                    case actions.NW_CORNER:
+                        this.setState({
+                            ...tempState,
+                            hoursDeg: 180,
+                            minutesDeg: 90
+                        });
+                        break;
+
+                    case actions.NE_CORNER:
+                        this.setState({
+                            ...tempState,
+                            hoursDeg: 270,
+                            minutesDeg: 180
+                        });
+                        break;
+
+                    case actions.SW_CORNER:
+                        this.setState({
+                            ...tempState,
+                            hoursDeg: 90,
+                            minutesDeg: 0
+                        });
+                        break;
+
+                    case actions.SE_CORNER:
+                        this.setState({
+                            ...tempState,
+                            hoursDeg: 0,
+                            minutesDeg: 270
+                        });
+                        break;
+
+                    default:
+                        const date = new Date();
+                        this.setState({
+                            hours: date.getHours()%12,
+                            minutes: date.getMinutes(),
+                            hoursDeg: (date.getHours()%12)*30,
+                            minutesDeg: date.getMinutes()*6
+                        });
+                        break;
+                }
             }
         },1000);
     }

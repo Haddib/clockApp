@@ -1,26 +1,29 @@
-import React, {useState, useEffect} from 'react';
+import React, {Component} from 'react';
 import VerticalClockBar from './containers/verticalClockBar/verticalClockBar';
-import './App.css';
+import NumberContainer from './containers/numberContainer/numberContainer';
+import HorizontalClockBlock from './containers/horizontaClockBlock/horizontalClockBlock';
+import ColonContainer from './containers/numberContainer/colonContainer';
+import * as styles from './App.module.css';
 
-function App() {
-
-  /*const [hours, setHours] =  useState(new Date().getHours());
-  const [minutes, setMinutes] = useState(new Date().getMinutes());
-
-  useEffect(() =>{
-      setInterval(() => {
-          setHours(new Date().getHours());
-          setMinutes(new Date().getMinutes());
-      },
-          60000
-      );
-  });*/
-
-  return (
-    <div className="App">
-      <VerticalClockBar />
-    </div>
-  );
+class App extends Component {
+  
+  render(){
+    return (
+      <div className={styles.App}>
+        <VerticalClockBar />
+        <div className={styles.ClockBlock}>
+          <HorizontalClockBlock />
+          <NumberContainer digit='1'/>
+          <NumberContainer digit='2'/>
+          <ColonContainer/>
+          <NumberContainer digit='3'/>
+          <NumberContainer digit='4'/>
+          <HorizontalClockBlock />
+        </div>
+        <VerticalClockBar/>     
+      </div>
+    );
+  }
 }
 
 export default App;
