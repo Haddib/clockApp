@@ -1,112 +1,99 @@
-import React, {Component} from 'react';
+import React, {useEffect, useState} from 'react';
 import * as styles from './numberContainer.module.css';
 import Clock from './../../components/clock/clock';
 import setRows from './../../store/numberFunctions';
 
-class NumberContainer extends Component {
+const NumberContainer = props => {
 
-    state = {
+    const [digit, setDigit] = useState(null);
+    const [positions, setPositions] = useState({
         TopRow: {
-            first: 0,
-            second: 0,
-            third: 0,
-            fourth: 0
+            first: null,
+            second: null,
+            third: null,
+            fourth: null
         }, 
         SecondRow: {
-            first: 0,
-            second: 0,
-            third: 0,
-            fourth: 0
+            first: null,
+            second: null,
+            third: null,
+            fourth: null
         },
         ThirdRow: {
-            first: 0,
-            second: 0,
-            third: 0,
-            fourth: 0
+            first: null,
+            second: null,
+            third: null,
+            fourth: null
         },
         FourtRow: {
-            first: 0,
-            second: 0,
-            third: 0,
-            fourth: 0
+            first: null,
+            second: null,
+            third: null,
+            fourth: null
         },
         FifthRow: {
-            first: 0,
-            second: 0,
-            third: 0,
-            fourth: 0
+            first: null,
+            second: null,
+            third: null,
+            fourth: null
         },
         BottomRow: {
-            first: 0,
-            second: 0,
-            third: 0,
-            fourth: 0
+            first: null,
+            second: null,
+            third: null,
+            fourth: null
         }
-    }
+    });
 
-    componentDidMount(){
-        setInterval(() => {
-            let date = new Date();
-            let number = null;
-            switch (this.props.digit) {
-                case '1': number = Math.floor(date.getHours()/10); 
-                    break;
-                case '2': number = date.getHours()%10; 
-                    break;
-                case '3': number = Math.floor(date.getMinutes()/10); 
-                    break;
-                case '4': number = date.getMinutes()%10; 
-                    break;    
-                default:
-                    break;
-            }
-            const tempState = setRows(number);
-            this.setState({...tempState});
-        },1000)
-    }
+    useEffect(() => {
+        if(digit !== props.digit){
+            setDigit(props.digit);
+            const tempState = setRows(props.digit);
+            setPositions({...tempState});
+        }
+        console.log(digit);
+    },[props.digit, digit]);
 
-    render(){
-        return (
-            <div className={styles.NumberContainer}>
-                <div className={styles.FourClockRow}>
-                    <Clock position={this.state.TopRow.first}/>
-                    <Clock position={this.state.TopRow.second}/>
-                    <Clock position={this.state.TopRow.third}/>
-                    <Clock position={this.state.TopRow.fourth}/>
-                </div>
-                <div className={styles.FourClockRow}>
-                    <Clock position={this.state.SecondRow.first}/>
-                    <Clock position={this.state.SecondRow.second}/>
-                    <Clock position={this.state.SecondRow.third}/>
-                    <Clock position={this.state.SecondRow.fourth}/>
-                </div>
-                <div className={styles.FourClockRow}>
-                    <Clock position={this.state.ThirdRow.first}/>
-                    <Clock position={this.state.ThirdRow.second}/>
-                    <Clock position={this.state.ThirdRow.third}/>
-                    <Clock position={this.state.ThirdRow.fourth}/>
-                </div>
-                <div className={styles.FourClockRow}>
-                    <Clock position={this.state.FourtRow.first}/>
-                    <Clock position={this.state.FourtRow.second}/>
-                    <Clock position={this.state.FourtRow.third}/>
-                    <Clock position={this.state.FourtRow.fourth}/>
-                </div>
-                <div className={styles.FourClockRow}>
-                    <Clock position={this.state.FifthRow.first}/>
-                    <Clock position={this.state.FifthRow.second}/>
-                    <Clock position={this.state.FifthRow.third}/>
-                    <Clock position={this.state.FifthRow.fourth}/>
-                </div>
-                <div className={styles.FourClockRow}>
-                    <Clock position={this.state.BottomRow.first}/>
-                    <Clock position={this.state.BottomRow.second}/>
-                    <Clock position={this.state.BottomRow.third}/>
-                    <Clock position={this.state.BottomRow.fourth}/>
-                </div>
+    return (
+        <div className={styles.NumberContainer}>
+            <div className={styles.FourClockRow}>
+                <Clock position={positions.TopRow.first}/>
+                <Clock position={positions.TopRow.second}/>
+                <Clock position={positions.TopRow.third}/>
+                <Clock position={positions.TopRow.fourth}/>
             </div>
-        );
-    }
+            <div className={styles.FourClockRow}>
+                <Clock position={positions.SecondRow.first}/>
+                <Clock position={positions.SecondRow.second}/>
+                <Clock position={positions.SecondRow.third}/>
+                <Clock position={positions.SecondRow.fourth}/>
+            </div>
+            <div className={styles.FourClockRow}>
+                <Clock position={positions.ThirdRow.first}/>
+                <Clock position={positions.ThirdRow.second}/>
+                <Clock position={positions.ThirdRow.third}/>
+                <Clock position={positions.ThirdRow.fourth}/>
+            </div>
+            <div className={styles.FourClockRow}>
+                <Clock position={positions.FourtRow.first}/>
+                <Clock position={positions.FourtRow.second}/>
+                <Clock position={positions.FourtRow.third}/>
+                <Clock position={positions.FourtRow.fourth}/>
+            </div>
+            <div className={styles.FourClockRow}>
+                <Clock position={positions.FifthRow.first}/>
+                <Clock position={positions.FifthRow.second}/>
+                <Clock position={positions.FifthRow.third}/>
+                <Clock position={positions.FifthRow.fourth}/>
+            </div>
+            <div className={styles.FourClockRow}>
+                <Clock position={positions.BottomRow.first}/>
+                <Clock position={positions.BottomRow.second}/>
+                <Clock position={positions.BottomRow.third}/>
+                <Clock position={positions.BottomRow.fourth}/>
+            </div>
+        </div>
+    );
 }
 
 export default NumberContainer;
