@@ -6,104 +6,99 @@ import setRows from './../../store/numberFunctions';
 class NumberContainer extends Component {
 
     state = {
+        number: null,
         TopRow: {
-            first: 0,
-            second: 0,
-            third: 0,
-            fourth: 0
+            first: null,
+            second: null,
+            third: null,
+            fourth: null
         }, 
         SecondRow: {
-            first: 0,
-            second: 0,
-            third: 0,
-            fourth: 0
+            first: null,
+            second: null,
+            third: null,
+            fourth: null
         },
         ThirdRow: {
-            first: 0,
-            second: 0,
-            third: 0,
-            fourth: 0
+            first: null,
+            second: null,
+            third: null,
+            fourth: null
         },
         FourtRow: {
-            first: 0,
-            second: 0,
-            third: 0,
-            fourth: 0
+            first: null,
+            second: null,
+            third: null,
+            fourth: null
         },
         FifthRow: {
-            first: 0,
-            second: 0,
-            third: 0,
-            fourth: 0
+            first: null,
+            second: null,
+            third: null,
+            fourth: null
         },
         BottomRow: {
-            first: 0,
-            second: 0,
-            third: 0,
-            fourth: 0
+            first: null,
+            second: null,
+            third: null,
+            fourth: null
         }
-    }
+    };
 
     componentDidMount(){
         setInterval(() => {
-            let date = new Date();
-            let number = null;
+            const date = new Date();
+            let number = 0;
+            
             switch (this.props.digit) {
-                case '1': number = Math.floor(date.getHours()/10); 
+                case '1':
+                    number = Math.floor(date.getHours()/10);
                     break;
-                case '2': number = date.getHours()%10; 
+
+                case '2':
+                    number = date.getHours()%10;
                     break;
-                case '3': number = Math.floor(date.getMinutes()/10); 
+
+                case '3':
+                    number = Math.floor(date.getMinutes()/10);
                     break;
-                case '4': number = date.getMinutes()%10; 
-                    break;    
+
+                case '4':
+                    number = date.getMinutes()%10;
+                    break;
+            
                 default:
                     break;
             }
-            const tempState = setRows(number);
-            this.setState({...tempState});
+        
+            if(number !== this.state.number){
+                const tempState = setRows(number);
+                this.setState({...tempState, number: number});
+            }
         },1000)
-    }
+    };
 
     render(){
+
+const setRow = row => {
+    return (
+        <div className={styles.FourClockRow}>
+            <Clock position={row.first}/>
+            <Clock position={row.second}/>
+            <Clock position={row.third}/>
+            <Clock position={row.fourth}/>
+        </div>
+    )
+}
+
         return (
             <div className={styles.NumberContainer}>
-                <div className={styles.FourClockRow}>
-                    <Clock position={this.state.TopRow.first}/>
-                    <Clock position={this.state.TopRow.second}/>
-                    <Clock position={this.state.TopRow.third}/>
-                    <Clock position={this.state.TopRow.fourth}/>
-                </div>
-                <div className={styles.FourClockRow}>
-                    <Clock position={this.state.SecondRow.first}/>
-                    <Clock position={this.state.SecondRow.second}/>
-                    <Clock position={this.state.SecondRow.third}/>
-                    <Clock position={this.state.SecondRow.fourth}/>
-                </div>
-                <div className={styles.FourClockRow}>
-                    <Clock position={this.state.ThirdRow.first}/>
-                    <Clock position={this.state.ThirdRow.second}/>
-                    <Clock position={this.state.ThirdRow.third}/>
-                    <Clock position={this.state.ThirdRow.fourth}/>
-                </div>
-                <div className={styles.FourClockRow}>
-                    <Clock position={this.state.FourtRow.first}/>
-                    <Clock position={this.state.FourtRow.second}/>
-                    <Clock position={this.state.FourtRow.third}/>
-                    <Clock position={this.state.FourtRow.fourth}/>
-                </div>
-                <div className={styles.FourClockRow}>
-                    <Clock position={this.state.FifthRow.first}/>
-                    <Clock position={this.state.FifthRow.second}/>
-                    <Clock position={this.state.FifthRow.third}/>
-                    <Clock position={this.state.FifthRow.fourth}/>
-                </div>
-                <div className={styles.FourClockRow}>
-                    <Clock position={this.state.BottomRow.first}/>
-                    <Clock position={this.state.BottomRow.second}/>
-                    <Clock position={this.state.BottomRow.third}/>
-                    <Clock position={this.state.BottomRow.fourth}/>
-                </div>
+                {setRow(this.state.TopRow)}
+                {setRow(this.state.SecondRow)}
+                {setRow(this.state.ThirdRow)}
+                {setRow(this.state.FourtRow)}
+                {setRow(this.state.FifthRow)}
+                {setRow(this.state.BottomRow)}
             </div>
         );
     }

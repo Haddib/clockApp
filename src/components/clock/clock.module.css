@@ -22,7 +22,7 @@
     border-radius: 0px 0px 50px 50px;
     top: 7%;
     transform-origin: 50% 100%;
-    width: 4%;
+    width: 5%;
 }
 
 .MinuteHand {
@@ -33,13 +33,7 @@
     border-radius: 0px 0px 50px 50px;
     top: 4%;
     transform-origin: 50% 100%;
-    width: 4%;
-}
-
-@keyframes rotate {
-    100% {
-        transform: rotateZ(360deg);
-    }
+    width: 5%;
 }
 
 .NormalHourHandContainer {
@@ -59,3 +53,4 @@
     left: 0;
     transition: transform 3s ease-in-out;
 }
+
